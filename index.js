@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 5000
+require('dotenv').config()
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require('cors')
 
@@ -8,8 +9,6 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 
-// BookinColleges
-// tPVOtf6wi70QXjYZ
 
 
 
@@ -27,8 +26,8 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
-        // await client.connect();
-
+        await client.connect();
+        const bookingCollection = client.db('bookingColleges').collection('colleges')
 
 
         await client.db("admin").command({ ping: 1 });
